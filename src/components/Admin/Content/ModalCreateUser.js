@@ -68,7 +68,8 @@ const ModalCreateUser = (props) => {
 
             if (data && data.EC===0) {
                 toast.success("success");
-                handleClose();
+              handleClose();
+              await props.fetchListUsers();
             } else {
                 toast.error("Unexpected API response");
             }

@@ -1,22 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { getAllUsers } from "../../../services/apiServices";
+
 
 const TableUser = (props) => {
-    const [listUsers, setlistUsers] = useState([]);
-//useEffect ham nay se duoc chay sau khi ham render ben duoi no chay xong 
- // ham useEfect chinh bang ham componentdidmount cua class
-    useEffect(() => {
-        fetchListUsers()
-    }, []);
-    // goi api 
-    const fetchListUsers = async () => {
-        let res = await getAllUsers()
-        if (res.EC === 0) {
-            setlistUsers(res.DT)
-            
-        }
-    }
+    const{listUsers} = props
+
     return (
         <>
             <table className="table table-hover table-bordered">
