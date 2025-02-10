@@ -42,4 +42,14 @@ const putUpdateNewUser = ( id,username, role, image) => {
 
 }
 
-export{postCreateNewUser,getAllUsers,putUpdateNewUser}
+// xoa nguoi dung const getAllUsers = () => {
+const deleteUser = (userId) => {
+      //console.log(userId)
+      return axios.delete('api/v1/participant', { data: { id: userId } });
+}
+// goi api paginate 
+const getUserWithPaginate = (page,limit) => {
+      //console.log(userId)
+      return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+}
+export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate}

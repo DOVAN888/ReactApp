@@ -1,7 +1,22 @@
+import ReactPaginate from "react-paginate";
+import React, { useEffect, useState } from 'react';
+//import ReactDOM from 'react-dom';
 
 
-const TableUser = (props) => {
-    const{listUsers} = props
+
+const TableUserPaginate = (props) => {
+    const { listUsers,fetchListUsersWithPaginate,pageCount } = props
+     
+
+    const handlePageClick = (event) => {
+    fetchListUsersWithPaginate(+event.selected+1)
+    
+    console.log(
+      `User requested page number ${event.selected}`
+    );
+    
+  };
+
 
     return (
         <>
@@ -43,8 +58,33 @@ const TableUser = (props) => {
                     }
                 </tbody>
             </table>
-        </>
+
+
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={2}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                
+                // Thêm class CSS để không cần viết thêm CSS
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+            />
+
+    </>
+           
+       
     );
 };
 
-export default TableUser;
+export default TableUserPaginate;

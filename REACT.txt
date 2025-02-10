@@ -73,3 +73,5 @@ npm install axios react-toastify react-paginate
 //Lodash là một thư viện JavaScript giúp làm việc với mảng (array), đối tượng (object), chuỗi //(string), số (number), function dễ dàng hơn. Nó cung cấp nhiều hàm hữu ích để xử lý dữ liệu mà //không cần viết code phức tạp.
 npm install lodash
 
+//  cai dat pagination 
+npm install react-paginate --save
