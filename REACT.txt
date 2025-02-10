@@ -1,0 +1,75 @@
+1 npx create-react-app my-react-app
+2npm install
+3npm install sass
+
+
+
+2 deBạn có thể chạy lại lệnh với cờ --legacy-peer-deps để npm bỏ qua kiểm tra sự phụ thuộc giữa các gói:
+ npx create-react-app hocreact2 --legacy-peer-deps
+
+
+2 cd my-react-app
+3 npm start
+4 mo vscode bang cau lenh code .
+5xoa npm : rm -rf hocreact2
+
+6 npm install web-vitals
+
+7 don sach cache npm cache clean --force
+
+
+
+8 
+npm là viết tắt của Node Package Manager, được cài đặt cùng với Node.js. Nó là trình quản lý gói (package manager) cho JavaScript, giúp bạn:
+
+npm la gi npm init: Khởi tạo một dự án Node.js và tạo file package.json.
+npm install <package>: Cài đặt một thư viện (package) vào dự án.
+npm install: Cài đặt tất cả các dependencies được liệt kê trong package.json.
+npm start: Chạy lệnh khởi động được định nghĩa trong package.json.
+
+
+fix loi npm audit fix --force
+
+
+
+ npm i --save sass
+
+
+
+1 su khac biet giua  funtion va class component 
+funtion welcome(props){
+return <h1>hello,{props.name}</h1>;
+}
+
+2 class welcome extends React.Component{
+render(){
+return <h1>hello,{this.props.name}</h1>
+}
+}
+
+3 su kien event vi du onclick,onchange,moudown...vv
+
+4 trong react chi co the truyen component tu thang cha xuong thang con
+
+
+
+// cai dat react router 
+npm install react-router-dom
+// cai dat ca react bootrap va router bootrap
+npm install react-router-dom bootstrap react-bootstrap
+
+// cai dat sidebar
+npm install --save-exact react-pro-sidebar@0.7.1
+// cai dat icon
+npm install --save-exact react-icons@4.4.0
+
+// cai dat tgu vien de lay api bang axios,dua ra thong bao bang toasttity,dieu  huong trang bang react paginate
+//axios	Dùng để gọi API (GET, POST, PUT, DELETE,...)
+//react-toastify	Hiển thị thông báo (Success, Error, Warning,...)
+//react-paginate	Phân trang dữ liệu (Pagination)
+npm install axios react-toastify react-paginate
+
+// Lodash là gì và tại sao cần cài đặt nó?
+//Lodash là một thư viện JavaScript giúp làm việc với mảng (array), đối tượng (object), chuỗi //(string), số (number), function dễ dàng hơn. Nó cung cấp nhiều hàm hữu ích để xử lý dữ liệu mà //không cần viết code phức tạp.
+npm install lodash
+

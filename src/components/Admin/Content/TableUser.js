@@ -25,7 +25,9 @@ const TableUser = (props) => {
                                 <td>{item.role || "N/A"}</td>
                                 <td className="d-flex gap-2">
                                     <button className="btn btn-secondary">View</button>
-                                    <button className="btn btn-warning ">Update</button>
+                                    <button className="btn btn-warning " onClick={()=>props.handeClickBtnUpdate(item)}>
+                                        Update
+                                    </button>
                                     <button className="btn btn-danger">Delete</button>
                                 </td>
                             </tr>

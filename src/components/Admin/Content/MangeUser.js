@@ -7,12 +7,18 @@ import TableUser from './TableUser';
 import { useEffect} from "react";
 import axios from "axios";
 import { getAllUsers } from "../../../services/apiServices";
+//phan update user
+import ModalUpdateUser from './ModalUpdateUser';
+
 
 const MangeUser = (props) => {
-    // ✅ Đặt useState bên trong component
+    //cai nay de an hien khi nhan  ao nut x o create
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
-
-
+    //cai nay de an hien khi nhan  ao nut x o update
+    const [showModalUpdateUser, setShowModalUpdateUser] = useState(false)
+     // ham nay de lay lai data khi nhan vao update vi data von co la mot object nen phi viet nhu the nay ({})
+    const [dataUpdate, setDataUpdate] = useState({})
+    // ham nay lay dnah sach lisuser
     const [listUsers, setlistUsers] = useState([]);
 
 
@@ -22,13 +28,19 @@ const MangeUser = (props) => {
     useEffect(() => {
         fetchListUsers()
     }, []);
-    // goi api 
+    // goi api getAllUsers() ben service
     const fetchListUsers = async () => {
         let res = await getAllUsers()
         if (res.EC === 0) {
             setlistUsers(res.DT)
             
         }
+    }
+    // ham update user useupdate chinh bang item 
+    const handeClickBtnUpdate = (userUpdate) => {
+        setShowModalUpdateUser(true)
+        setDataUpdate(userUpdate)
+        //console.log(userUpdate)
     }
     return (
         <div className="manage-user-container">
@@ -42,12 +54,22 @@ const MangeUser = (props) => {
                     </button>
                 </div>
                 <div className="table-users-container">
-                    <TableUser listUsers={ listUsers} />
+                    <TableUser
+                        listUsers={listUsers} 
+                        handeClickBtnUpdate={handeClickBtnUpdate}
+                        
+                    />
                 </div>
                 <ModalCreateUser 
                     show={showModalCreateUser} 
                     setShow={setShowModalCreateUser} 
                     fetchListUsers={fetchListUsers}
+                />
+                <ModalUpdateUser
+                    show={showModalUpdateUser} 
+                    setShow={setShowModalUpdateUser} 
+                    dataUpdate={dataUpdate}
+
                 />
             </div>
         </div>
