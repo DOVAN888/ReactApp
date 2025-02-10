@@ -17,4 +17,11 @@ const postCreateNewUser = (email, password, username, role, image) => {
             });
 
 }
-export{postCreateNewUser}
+
+
+// ham api goi table vi la get nne doen gian la lay duong dan thoi chu ko can truyen data nhu ben tren 
+const getAllUsers = () => {
+    return axios.get('api/v1/participant/all');
+}
+
+export{postCreateNewUser,getAllUsers}
