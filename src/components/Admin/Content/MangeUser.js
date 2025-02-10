@@ -14,8 +14,11 @@ import ModalDeleteUser from './ModalDeleteUser';
 import { getUserWithPaginate } from '../../../services/apiServices';
 
 const MangeUser = (props) => {
+    // doan ben duoi de phan trang 
     const LIMIT_USER = 6;// cai nay lay tu backend lien quan den phan trang
     const [pageCount, setPageCount] = useState(0);
+    const [currentPage,setCurrentPage] = useState(1)
+
     //cai nay de an hien khi nhan  ao nut x o create
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     //cai nay de an hien khi nhan  ao nut x o update
@@ -98,14 +101,19 @@ const MangeUser = (props) => {
                         listUsers={listUsers} 
                         handeClickBtnUpdate={handeClickBtnUpdate}
                          handleClickBtnDelete={ handleClickBtnDelete}
-                    fetchListUsersWithPaginate={fetchListUsersWithPaginate}
-                     pageCount ={pageCount}
+                       fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                        pageCount={pageCount}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
                     />
                 </div>
                 <ModalCreateUser 
                     show={showModalCreateUser} 
                     setShow={setShowModalCreateUser} 
                     fetchListUsers={fetchListUsers}
+                     fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                     currentPage={currentPage}
+                   setCurrentPage={setCurrentPage}
                 />
                 <ModalUpdateUser
                     show={showModalUpdateUser} 
@@ -113,6 +121,9 @@ const MangeUser = (props) => {
                     dataUpdate={dataUpdate}
                     fetchListUsers={fetchListUsers}
                     resetUpdateData={resetUpdateData}
+                     fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                     currentPage={currentPage}
+                     setCurrentPage={setCurrentPage}
 
 
                 />
@@ -121,6 +132,9 @@ const MangeUser = (props) => {
                     setShow={setShowModalDeleteUser}
                     dataDelete={dataDelete}
                     fetchListUsers={fetchListUsers}
+                   fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                    
                 />
             </div>

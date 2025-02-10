@@ -67,7 +67,9 @@ const ModalUpdateUser = (props) => {
         if (data && data.EC === 0) {
             toast.success("Update successful!");
             handleClose();
-            await props.fetchListUsers();
+            // await props.fetchListUsers();
+             props.setCurrentPage(1)
+              await props.fetchListUsersWithPaginate(1);
         } else {
             toast.error(data.EM || "Unexpected API response");
         }

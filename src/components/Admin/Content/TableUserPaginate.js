@@ -9,7 +9,8 @@ const TableUserPaginate = (props) => {
      
 
     const handlePageClick = (event) => {
-    fetchListUsersWithPaginate(+event.selected+1)
+        fetchListUsersWithPaginate(+event.selected + 1)
+         props.setCurrentPage(+event.selected + 1)
     
     console.log(
       `User requested page number ${event.selected}`
@@ -60,6 +61,7 @@ const TableUserPaginate = (props) => {
             </table>
 
 
+            <div className="d-flex justify-content-center">
             <ReactPaginate
                 breakLabel="..."
                 nextLabel="next >"
@@ -68,7 +70,7 @@ const TableUserPaginate = (props) => {
                 marginPagesDisplayed={2}
                 pageCount={pageCount}
                 previousLabel="< previous"
-                
+
                 // Thêm class CSS để không cần viết thêm CSS
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
@@ -78,8 +80,10 @@ const TableUserPaginate = (props) => {
                 nextLinkClassName="page-link"
                 breakClassName="page-item"
                 breakLinkClassName="page-link"
-                containerClassName="pagination"
+             containerClassName="pagination"
+             forcePage={props.currentPage -1}
             />
+        </div>
 
     </>
            
