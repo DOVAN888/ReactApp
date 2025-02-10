@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from '../../../services/apiServices';
+import { putUpdateNewUser } from '../../../services/apiServices';
 import _ from 'lodash';
+
 const ModalUpdateUser = (props) => {
-    const { show, setShow,dataUpdate } = props;
+    const { show, setShow,dataUpdate, resetUpdateData } = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -14,12 +15,12 @@ const ModalUpdateUser = (props) => {
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
 
-    // ham cap nhat lai du lieu 
+    // ham cap nhat lai du lieu cai dat lodash de kiem tra rong vv
     useEffect(() => {
         if (!_.isEmpty(dataUpdate)) {
             //update state
         setEmail(dataUpdate.email);
-        //setPassword();
+        setPassword(dataUpdate.password);
         setUsername(dataUpdate.username);
         setRole(dataUpdate.role);
         setImage("");
@@ -40,6 +41,7 @@ const ModalUpdateUser = (props) => {
         setRole("USER");
         setPreviewImage("");
         setImage("");
+        resetUpdateData()
     };
 
     // 📌 Xử lý upload ảnh
@@ -50,51 +52,31 @@ const ModalUpdateUser = (props) => {
         }
     };
 
-    // 📌 Kiểm tra email hợp lệ
-    const validateEmail = (email) => {
-        return Boolean(String(email)
-            .toLowerCase()
-            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/));
-    };
-
-    // 📌 Kiểm tra mật khẩu hợp lệ
-    const validatePassword = (password) => {
-        return password.length >= 6 && !/\s/.test(password);
-    };
-
     // 📌 Gửi API tạo user
     const handSubmitCreateUser = async () => {
-        if (!validateEmail(email)) {
-            toast.error('Invalid email!');
-            return;
-        }
+    if (!dataUpdate || !dataUpdate.id) {
+        toast.error("User data is missing!");
+        return;
+    }
 
-        if (!validatePassword(password)) {
-            toast.error('Password must be at least 6 characters!');
-            return;
-        }
 
-        if (!image) {
-            toast.error("Please upload an image!");
-            return;
-        }
+    try {
+        let data = await putUpdateNewUser(dataUpdate.id, username, role, image);
+        console.log("Check res:", data);
 
-        try {
-            let data = await postCreateNewUser(email, password, username, role, image);
-            console.log("Check res:", data);
-
-            if (data && data.EC===0) {
-                toast.success("success");
-              handleClose();
-              await props.fetchListUsers();
-            } else {
-                toast.error("Unexpected API response");
-            }
-        } catch (error) {
-            console.error("Error when submitting form:", error);
-            toast.error("Something went wrong, please try again!");
+        if (data && data.EC === 0) {
+            toast.success("Update successful!");
+            handleClose();
+            await props.fetchListUsers();
+        } else {
+            toast.error(data.EM || "Unexpected API response");
         }
-    };
+    } catch (error) {
+        console.error("Error when submitting form:", error);
+        toast.error("Something went wrong, please try again!");
+    }
+};
+
  //console.log('chrck dataUpdate',props.dataUpdate)
 
     return (

@@ -42,6 +42,10 @@ const MangeUser = (props) => {
         setDataUpdate(userUpdate)
         //console.log(userUpdate)
     }
+    // ham resetdata neu nhan vao ot id hai lan no van chay 
+    const resetUpdateData = () => {
+        setDataUpdate({})
+    }
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -69,6 +73,9 @@ const MangeUser = (props) => {
                     show={showModalUpdateUser} 
                     setShow={setShowModalUpdateUser} 
                     dataUpdate={dataUpdate}
+                    fetchListUsers={fetchListUsers}
+                    resetUpdateData={resetUpdateData}
+
 
                 />
             </div>
