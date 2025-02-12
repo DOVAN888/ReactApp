@@ -1,10 +1,11 @@
-import SideBar from "./SideBar";
-import { FaBars } from 'react-icons/fa';
-import './Admin.scss';
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import SideBar from "./SideBar"; // Import Sidebar (Thanh điều hướng)
+import { FaBars } from 'react-icons/fa'; // Import icon FaBars (Biểu tượng 3 dấu gạch ngang)
+import './Admin.scss'; // Import file CSS để tạo giao diện
+import { useState } from "react"; // Import useState để quản lý trạng thái
+import { Outlet } from "react-router-dom"; // Import Outlet để hiển thị các Route con
+import { ToastContainer } from "react-toastify"; // Import ToastContainer để hiển thị thông báo
+import "react-toastify/dist/ReactToastify.css"; // Import CSS mặc định cho Toastify
+
 
 const Admin = (props) => {
     const  [collapsed,setCollapsed] = useState(false)
