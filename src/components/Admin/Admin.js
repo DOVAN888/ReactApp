@@ -9,17 +9,25 @@ import "react-toastify/dist/ReactToastify.css"; // Import CSS mặc định cho 
 
 const Admin = (props) => {
     const  [collapsed,setCollapsed] = useState(false)
+    //collapsed là một state để kiểm soát Sidebar mở hoặc đóng.
     return (
         <div className="admin-container">
             <div className="admin-sidebar">
+        //📌 3.1 Sidebar (Thanh điều hướng bên trái)
                 <SideBar collapsed={collapsed} />
             </div>
             <div className="admin-content">
                 <div className="admin-header">
+        // Khi bấm vào biểu tượng FaBars, Sidebar sẽ đóng/mở (setCollapsed(!collapsed))
                      <FaBars onClick={()=>setCollapsed(!collapsed)}/>
                 </div>
 
                 <div className="admin-main">
+            //  Dòng <Outlet/> sẽ được thay thế bằng nội dung tương ứng với route con.
+            //  Ví dụ về cách hoạt động của <Outlet />:
+
+            //  Khi route là /admin/dashboard, <Outlet /> sẽ hiển thị <Dashboard />.
+            // Khi route là /admin/users, <Outlet /> sẽ hiển thị <UserManagement />.
                     <Outlet/>
                 </div>
                  
