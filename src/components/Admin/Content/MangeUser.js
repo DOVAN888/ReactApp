@@ -12,6 +12,7 @@ import { getAllUsers } from "../../../services/apiServices";
 import ModalUpdateUser from './ModalUpdateUser';
 import ModalDeleteUser from './ModalDeleteUser';
 import { getUserWithPaginate } from '../../../services/apiServices';
+import Register from '../../Auth/Register';
 
 const MangeUser = (props) => {
     // doan ben duoi de phan trang 
@@ -136,6 +137,12 @@ const MangeUser = (props) => {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                    
+                />
+                <Register
+                    fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                        pageCount={pageCount}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
                 />
             </div>
         </div>

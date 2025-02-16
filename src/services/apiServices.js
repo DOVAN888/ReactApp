@@ -1,6 +1,6 @@
 import axios from '../utils/axiosCustomine';
 
-
+// ham tao nguoi dung 
 const postCreateNewUser = (email, password, username, role, image) => {
     //submit data 
     const data = new FormData();
@@ -52,4 +52,26 @@ const getUserWithPaginate = (page,limit) => {
       //console.log(userId)
       return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
 }
-export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate}
+
+// phan login
+const postLogin = (userEmail, userPassword) => {
+       return axios.post(`api/v1/login`,{email:userEmail,password:userPassword});
+
+}
+// phan register
+
+const postCreateRegister = (email, password, username) => {
+    // Tạo đối tượng URLSearchParams
+    const data = new URLSearchParams();
+    data.append("email", email);
+    data.append("password", password);
+    data.append("username", username);
+
+    return axios.post("api/v1/register", data, {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    });
+};
+
+export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate,postLogin,postCreateRegister}

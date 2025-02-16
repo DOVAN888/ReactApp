@@ -19,8 +19,8 @@ const ModalDeleteUser=(props)=> {
                 toast.success("Deletesuccess");
               handleClose();
               // await props.fetchListUsers();
-              props.setCurrentPage(1)
-              await props.fetchListUsersWithPaginate(1);
+               //props.setCurrentPage(1)
+              await props.fetchListUsersWithPaginate(props.currentPage);
             } else {
                 toast.error("Unexpected API response");
             }

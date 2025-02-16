@@ -1,0 +1,148 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+   // background-color: #f7f7f7;
+background: linear-gradient(to right, #4CAF50, #2E8B57);
+    /* Gradient xanh lá */
+.header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        /* Căn phải */
+        align-items: center;
+        padding: 15px 20px;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.2);
+        /* Nền mờ */
+        backdrop-filter: blur(5px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        gap: 10px;
+        /* Tạo khoảng cách giữa text và button */
+
+        span {
+            color: white;
+            font-size: 14px;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 5px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background: white;
+                color: black;
+            }
+        }
+    }
+    .title {
+        font-size: 25px;
+        padding: 20px 0;
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+    }
+
+    .welcome {
+        font-size: 20px;
+        text-align: center;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .content-form {
+        border: 1px solid green;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 16px;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                transition: 0.3s;
+
+                &:focus {
+                    border-color: #28a745;
+                    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+                }
+            }
+        }
+
+           .forgot-password {
+            font-size: 14px;
+            color: #007bff;
+            cursor: pointer;
+            text-align: right;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: #218838;
+            }
+        }
+                        .back {
+                            display: block;
+                            /* Đổi từ inline sang block để dễ căn chỉnh */
+                            width: fit-content;
+                            /* Để nút có kích thước phù hợp với nội dung */
+                            margin: 20px auto;
+                            /* Căn giữa */
+                            background-color: #28a745;
+                            color: white;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            transition: 0.3s;
+                            text-align: center;
+                            border: none;
+            
+                            &:hover {
+                                background-color: #218838;
+                            }
+                        }
+    }
+}

@@ -1,0 +1,107 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #4CAF50, #2E8B57);
+
+    .register-form {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 15px;
+
+            label {
+                font-size: 14px;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                transition: 0.3s;
+
+                &:focus {
+                    border-color: #28a745;
+                    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+                }
+            }
+        }
+
+        // 📌 Sửa lại: Di chuyển `.password-field` ra ngoài `.login-link`
+        .password-field {
+            position: relative;
+
+            .input-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                input {
+                    flex: 1;
+                    padding-right: 40px; // Chừa khoảng trống cho icon
+                }
+
+                .toggle-icon {
+                    position: absolute;
+                    right: 10px;
+                    cursor: pointer;
+                    color: #888;
+                    transition: 0.3s;
+
+                    &:hover {
+                        color: #333;
+                    }
+                }
+            }
+        }
+
+        .btn-register {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+
+            &:hover {
+                background-color: #218838;
+            }
+        }
+
+        .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+
+            span {
+                color: #007bff;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
