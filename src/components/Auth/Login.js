@@ -3,13 +3,14 @@ import './Login.scss'
 import { useNavigate } from 'react-router-dom'
 import { postLogin } from '../../services/apiServices'
 import { toast } from "react-toastify";
-
+import { useDispatch } from 'react-redux';
 const Login = (props) => {
       
     const[email,setEmail] = useState("")
     const [password, setPassword] = useState("")
     
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const handleLogin = async() => {
         // validate
 
@@ -35,7 +36,7 @@ const Login = (props) => {
         //  submit api
         
         try {
-            
+
               if (!validateEmail(email)) {
             toast.error('Invalid email!');
             return;
@@ -48,7 +49,11 @@ const Login = (props) => {
               
            let data = await postLogin(email, password)
           
-            if (data && data.EC===0) {
+            if (data && data.EC === 0) {
+                dispatch({
+                    type: 'login',
+                    payload:data
+                })
                 toast.success("success");
                 navigate('/')
            
@@ -92,7 +97,7 @@ const Login = (props) => {
                 <button
                     className='btn-submit'
                     onClick={()=>handleLogin()}
-                >Login to vanvan </button>
+                >Login </button>
             </div>
             <div>
                 <span
