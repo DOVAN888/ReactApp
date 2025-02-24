@@ -46,6 +46,8 @@ instance.interceptors.response.use(
     },
     //no se dua ra thong bao loi tu server 
     function (error) {
+         NProgress.done();// dong nay loadding xong khi goi api
+
         console.error("❌ Response error:", error.response);
         return error && error.response && error.response.data? error.response.data :Promise.reject(error);
     }

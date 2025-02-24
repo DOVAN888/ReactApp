@@ -79,3 +79,15 @@ npm install react-paginate --save
 
 //nprogress là một thư viện hiển thị thanh tiến trình tải trang (loading bar) dạng mảnh ở trên đầu trang
 npm install --save-exact nprogress
+
+//
+npm install redux-persist
+
+Giúp lưu trữ (persist) state của Redux vào Local Storage, Session Storage hoặc AsyncStorage.
+Khi reload trang, Redux vẫn giữ được dữ liệu, không bị mất như Redux mặc định.
+Hữu ích cho ứng dụng React cần giữ thông tin đăng nhập, giỏ hàng, cài đặt người dùng.
+Cách lưu trữ	Dữ liệu bị mất khi...?	Khi nào nên dùng?
+localStorage	Người dùng xóa cache, reset trình duyệt	Dữ liệu cần giữ lâu dài (cài đặt, giỏ hàng, dark mode)
+sessionStorage	Đóng trình duyệt hoặc tab  Chỉ cần lưu trong phiên làm việc (form tạm thời)
+Lưu trên server	Khi server mất dữ liệu hoặc không đồng bộ	Dữ liệu quan trọng (token, lịch sử mua hàng, thông tin người dùng)
+
