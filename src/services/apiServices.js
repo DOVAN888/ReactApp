@@ -55,9 +55,15 @@ const getUserWithPaginate = (page,limit) => {
 
 // phan login
 const postLogin = (userEmail, userPassword) => {
-       return axios.post(`api/v1/login`,{email:userEmail,password:userPassword});
-
-}
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(axios.post(`api/v1/login`, {
+                email: userEmail,
+                password: userPassword
+            }));
+        }, 5000); // Trì hoãn 5 giây ở frontend, không gửi `delay` lên server
+    });
+};
 // phan register
 
 const postCreateRegister = (email, password, username) => {

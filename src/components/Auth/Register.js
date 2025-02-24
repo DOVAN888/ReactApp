@@ -5,7 +5,7 @@ import "./Register.scss";
 import { postCreateRegister } from "../../services/apiServices";
 import { toast } from "react-toastify";
 
-// 📌 Hàm kiểm tra email hợp lệ
+//  Hàm kiểm tra email hợp lệ
 const validateEmail = (email) => {
     return Boolean(
         String(email)
@@ -14,7 +14,8 @@ const validateEmail = (email) => {
     );
 };
 
-// 📌 Kiểm tra mật khẩu hợp lệ
+
+//  Kiểm tra mật khẩu hợp lệ
 const validatePassword = (password) => {
     return password.length >= 6 && !/\s/.test(password);
 };

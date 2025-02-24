@@ -1,3 +1,7 @@
+
+//  tao du lieu muon luu  vao redux 
+import { LOGIN } from "../action/userAction";
+
 const INITIAL_STATE = {
     account: {
         access_token: '',
@@ -12,7 +16,7 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         
-        case "login":
+        case LOGIN :
             console.log(action) 
             return {
                 // copy va gan du lieu vao redux
@@ -24,7 +28,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                         image: action?.payload?.DT?.image,
                         role: action?.payload?.DT?.role
     },
-                isAuthenticated:true // Đánh dấu là đã đăng xuất
+                isAuthenticated:true // Đánh dấu là đã đăng nhap thanh cog
             };
 
         case "logout":

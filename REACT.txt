@@ -75,3 +75,7 @@ npm install lodash
 
 //  cai dat pagination 
 npm install react-paginate --save
+
+
+//nprogress là một thư viện hiển thị thanh tiến trình tải trang (loading bar) dạng mảnh ở trên đầu trang
+npm install --save-exact nprogress
