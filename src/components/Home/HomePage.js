@@ -9,16 +9,6 @@ const HomePage = (props) => {
     const account = useSelector(state => state.user.account)
    
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     return (
     <div>
         <div className="homepage-container">

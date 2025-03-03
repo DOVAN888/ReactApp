@@ -1,6 +1,8 @@
 import axios from "axios";
 import NProgress from "nprogress";
+import { store } from '../redux/store';
 
+//caidoan nay de chay thanh load khi goi api 
 NProgress.configure({
     showSpinner: false,
     // casing: 'ease',
@@ -26,7 +28,15 @@ const instance = axios.create({
 instance.interceptors.request.use(
     function (config) {
         NProgress.start();//dong nay goi thanh load ding khi go iapi
+       // Gọi dữ liệu trong Redux để lấy token của user
+const access_token = store?.getState()?.user?.account?.access_token;
 
+        // ham get state la ham lay tat ca du lieu tu redux 
+// Kiểm tra nếu access_token tồn tại thì thêm vào headers
+if (access_token) {
+    config.headers["Authorization"] = "Bearer " + access_token;
+}
+            
         console.log("📤 Request sent:", config);
         return config;
     },

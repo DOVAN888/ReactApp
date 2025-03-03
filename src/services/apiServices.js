@@ -80,4 +80,10 @@ const postCreateRegister = (email, password, username) => {
     });
 };
 
-export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate,postLogin,postCreateRegister}
+// lay hinh anh user 
+const getQuizByUser = () => {
+    return axios.get('api/v1/quiz-by-participant')
+}
+
+
+export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate,postLogin,postCreateRegister,getQuizByUser }
