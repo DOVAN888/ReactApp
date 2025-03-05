@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { getQuizByUser } from "../../services/apiServices";
 import './ListQuiz.scss'
+import { useNavigate } from "react-router-dom";
 const ListQuiz = (props) => {
+    //nagivate
+    const navigate = useNavigate()
+    
+    // tao state
     const [arrQuiz, setArrayQuiz] = useState([])
     
     // ham nay ko truyen gi vao trong thi no se duoc goi mot lan sau khi render 
@@ -32,7 +37,7 @@ const ListQuiz = (props) => {
                                 <div className="card-body">
                                     <h5 className="card-title">Quiz{ index +1}</h5>
                                     <p className="card-text">{ quiz.description}</p>
-                                    <button className="btn btn-primary">Start Now</button>
+                                    <button className="btn btn-primary" onClick={()=>navigate(`/quiz/${quiz.id}`)}>Start Now</button>
                                 </div>
                             </div>
                         )

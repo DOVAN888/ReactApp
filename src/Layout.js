@@ -10,7 +10,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Auth/Register";
 import ListQuiz from "./components/User/ListQuiz";
+import DetailQuiz from "./components/User/DetailQuiz";
+//import ham lay duong dan 
+import { useParams } from "react-router-dom";
 
+//ham not found
+const NotFound = () => {
+    return (
+        <div className="alert alert-danger container center">
+           404: Not found data width yur Current URL 
+        </div>
+    )
+}
 const Layout = () => {
     return (
         <>
@@ -20,7 +31,9 @@ const Layout = () => {
            <Route index element={<HomePage />} />
            <Route path="users" element={<ListQuiz/>} />
           
-        </Route>
+                </Route>
+          <Route path="/quiz/:id" element={<DetailQuiz/>} />
+
         {/* //phan admin */}
         <Route path="/admins" element={<Admin />}>
           <Route index element={<DashBoard />} />
@@ -30,6 +43,7 @@ const Layout = () => {
     {/* phan login */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound/>} />
 
             </Routes>
               
