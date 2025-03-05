@@ -37,7 +37,13 @@ const ListQuiz = (props) => {
                             </div>
                         )
                     })
-                }
+            }
+            
+            {arrQuiz && arrQuiz.length === 0 &&
+                <div>
+                    you don't have any quiz now ...
+                </div>
+            }
           
         </div>
     );
