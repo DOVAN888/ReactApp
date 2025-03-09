@@ -91,3 +91,7 @@ localStorage	Người dùng xóa cache, reset trình duyệt	Dữ liệu cần g
 sessionStorage	Đóng trình duyệt hoặc tab  Chỉ cần lưu trong phiên làm việc (form tạm thời)
 Lưu trên server	Khi server mất dữ liệu hoặc không đồng bộ	Dữ liệu quan trọng (token, lịch sử mua hàng, thông tin người dùng)
 
+//
+npm install lodash
+Lodash là một thư viện JavaScript phổ biến cung cấp nhiều hàm tiện ích giúp thao tác với mảng, đối tượng, chuỗi, và các kiểu dữ liệu khác một cách hiệu quả và dễ dàng hơn. Nó giúp giảm thiểu số lượng code phải viết và tối ưu hiệu suất.
+

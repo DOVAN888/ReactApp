@@ -1,0 +1,138 @@
+.detail-quiz-container {
+    display: flex;
+    flex-wrap: wrap; // Cho phép xuống hàng khi màn hình nhỏ
+    gap: 20px;
+    padding: 50px;
+        // min-height: 850px;
+
+    .left-content {
+        flex: 1; // Tự động co giãn theo không gian có sẵn
+        min-width: 300px; // Đảm bảo không bị quá nhỏ
+        border: 1px solid red;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Đổ bóng nhẹ
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff4757; // Màu đỏ đẹp
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .q-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+        }
+        .q-content {
+            margin-top: 20px;
+            .q-image {
+                    img {
+                        width: 300px;
+                        height: 200px;
+                        max-width: 100%; // Ảnh tự động co dãn theo kích thước khung
+                        height: auto;
+                        object-fit: contain; // Giữ nguyên tỉ lệ ảnh
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    }
+                
+
+            .question {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .answer {
+                .a-child {
+                    margin-bottom: 10px;
+
+                    .form-check {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .form-check-input {
+                            width: 18px;
+                            height: 18px;
+                        }
+
+                        .form-check-label {
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+        .footer {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .btn-secondary {
+                background-color: #95a5a6;
+                color: white;
+
+                &:hover {
+                    background-color: #7f8c8d;
+                }
+            }
+
+            .btn-primary {
+                background-color: #3498db;
+                color: white;
+
+                &:hover {
+                    background-color: #2980b9;
+                }
+            }
+        }
+    }
+
+    .right-content {
+        flex: 0.3;
+        min-width: 200px;
+        border: 1px solid green;
+        border-radius: 8px;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        font-weight: 600;
+        color: #27ae60;
+    }
+}
+
+/* 🌟 Responsive cho màn hình nhỏ */
+@media screen and (max-width: 768px) {
+    .detail-quiz-container {
+        flex-direction: column; // Chuyển về dạng cột khi màn hình nhỏ
+    }
+
+    .left-content,
+    .right-content {
+        width: 100%; // Cả hai phần chiếm toàn bộ chiều rộng khi thu nhỏ
+    }
+
+    .q-body img {
+        max-width: 100%; // Ảnh sẽ luôn vừa với màn hình nhỏ
+        height: auto;
+    }
+}
