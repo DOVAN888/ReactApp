@@ -41,8 +41,8 @@ const DetailQuiz = (props) => {
                           questionDescription = item.description;
                           image = item.image
                       }
-                      item.answers.isSelected = false;
-                      answers.push(item.answers)
+                      item.answers.isSelected = false;// gan selected vao ans
+                      answers.push(item.answers)// day mang item vua lap vao mang anserwer vua tao 
                   })
                  
 
@@ -50,13 +50,13 @@ const DetailQuiz = (props) => {
                  return { questionId: key, answers,questionDescription,image }
               })
                .value()
-            console.log("check data",data)
+            //console.log("check data",data)
             setDataquiz(data)
 
         }
         
     }
-    console.log("check dataQuiz", dataQuiz)
+    //console.log("check dataQuiz", dataQuiz)
     
 
     // viet ham prew va next
@@ -80,8 +80,9 @@ const DetailQuiz = (props) => {
 
       
   const handleCheckbox = (answerId, questionId) => {
-    let dataQuizClone = _.cloneDeep(dataQuiz);// copy toan bo object dataquiz thanh mang moi 
-    let question = dataQuizClone.find(item => +item.questionId === +questionId)//ten item la ten tuy y ban dat 
+      let dataQuizClone = _.cloneDeep(dataQuiz);// copy toan bo object dataquiz thanh mang moi // clone nghia la ban sao hay sao chep
+                                                // react hook ko co khai niem merger state nen ta danh phai clone 
+    let question = dataQuizClone.find(item => +item.questionId === +questionId)//ten item la ten tuy y ban dat item la ten trong mang moi
     if (question && question.answers) {
         question.answers = question.answers.map(item => {
             if (+item.id === +answerId) {
@@ -90,6 +91,7 @@ const DetailQuiz = (props) => {
             return item;
         })
     }
+    //// Tìm vị trí (index) của phần tử này trong mảng 
     let index = dataQuizClone.findIndex(item => +item.questionId === +questionId)
     if (index > -1) {
         dataQuizClone[index] = question;
@@ -97,6 +99,66 @@ const DetailQuiz = (props) => {
 
     setDataquiz(dataQuizClone);
 }
+
+
+    // ham handle fisnish 
+    const handleFinishQuiz = () => {
+        console.log((">> check data sau khi submit", dataQuiz))
+        let payload = {
+            quizId: +quizId,// quizId chinh bang Id lay tren param
+            answers: []
+        };
+        let answers=[];
+        if (dataQuiz && dataQuiz.length > 0) {
+            dataQuiz.forEach(question => {
+                let questionId = question.questionId;
+                let userAnswerId = [];
+                //dong nay de lap answer
+                question.answers.forEach(a => {
+                    if (a.isSelected === true) {
+                        userAnswerId.push(a.id)
+                    }
+                    
+                });
+                 // push hai bien tren vao mang 
+                 answers.push({
+                    questionId: +questionId,
+                    userAnswerId :userAnswerId
+                })
+            })
+            payload.answers = answers;
+            console.log("check answer",payload)
+            };
+           
+        }
+//ket qua cua doan nay se co dang 
+//     check answer 
+// {quizId: 1, answers: Array(3)}
+// answers
+// : 
+// Array(3)
+// 0
+// : 
+// {questionId: 1, userAnswerId: Array(0)}
+// 1
+// : 
+// {questionId: 2, userAnswerId: Array(0)}
+// 2
+// : 
+// {questionId: 3, userAnswerId: Array(0)}
+// length
+// : 
+// 3
+// [[Prototype]]
+// : 
+// Array(0)
+// quizId
+// : 
+// 1
+// [[Prototype]]
+// : 
+// Object
+    
 
 //     Giả sử dataQuiz hiện tại:
 
@@ -152,7 +214,7 @@ const DetailQuiz = (props) => {
                         Prev</button>
                     <button className="btn btn-primary"  onClick={()=>handleNext()}>
                         Next</button>
-                      <button className="btn btn-warning"  onClick={()=>handleNext()}>
+                      <button className="btn btn-warning"  onClick={()=>handleFinishQuiz()}>
                         Finish</button>
                 </div>
 
@@ -242,3 +304,37 @@ export default DetailQuiz
 // question = b	Gán kết quả sau .map vào biến question — nhưng cách làm này cũng sai logic, giải thích bên dưới.
 // let index = dataQuizClone.findIndex(...)	Tìm vị trí của câu hỏi trong dataQuizClone.
 // dataQuizClone[index] = question	Gán lại câu hỏi đã chỉnh sửa vào vị trí cũ.
+
+
+// tim index vi du let dataQuiz = [
+//     {
+//         questionId: 1,
+//         questionText: "Câu hỏi 1",
+//         answers: [
+//             { id: 101, text: "Đáp án A", isSelected: false },
+//             { id: 102, text: "Đáp án B", isSelected: false }
+//         ]
+//     },
+//     {
+//         questionId: 2,
+//         questionText: "Câu hỏi 2",
+//         answers: [
+//             { id: 201, text: "Đáp án A", isSelected: false },
+//             { id: 202, text: "Đáp án B", isSelected: false }
+//         ]
+//     }
+// ];
+
+// const answerId = 101;
+// const questionId = 1;
+
+// let dataQuizClone = _.cloneDeep(dataQuiz);
+
+// // Tìm object câu hỏi có questionId = 1
+// let question = dataQuizClone.find(item => +item.questionId === +questionId);
+// console.log("question = ", question);
+
+// // Tìm vị trí (index) của phần tử này trong mảng
+// let index = dataQuizClone.findIndex(item => +item.questionId === +questionId);
+// console.log("index = ", index);
+
