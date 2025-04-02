@@ -13,6 +13,7 @@ import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 //import ham lay duong dan 
 import { useParams } from "react-router-dom";
+import ManageQuiz from "./components/Admin/Content/Quiz/ManageQuiz";
 
 //ham not found
 const NotFound = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
         <Route path="/admins" element={<Admin />}>
           <Route index element={<DashBoard />} />
           <Route path="manage-users" element={<MangeUser />} />
+          <Route path="manage-quizzes" element={<ManageQuiz />} />
         </Route>
 
     {/* phan login */}

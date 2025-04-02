@@ -94,4 +94,5 @@ Lưu trên server	Khi server mất dữ liệu hoặc không đồng bộ	Dữ l
 //
 npm install lodash
 Lodash là một thư viện JavaScript phổ biến cung cấp nhiều hàm tiện ích giúp thao tác với mảng, đối tượng, chuỗi, và các kiểu dữ liệu khác một cách hiệu quả và dễ dàng hơn. Nó giúp giảm thiểu số lượng code phải viết và tối ưu hiệu suất.
-
+//floadting lable vao duong dan :https://getbootstrap.com/docs/5.0/forms/floating-labels/
+// html legen :https://www.w3schools.com/tags/tag_legend.asp hoac //https://getbootstrap.jp/docs/5.3/forms/layout/
