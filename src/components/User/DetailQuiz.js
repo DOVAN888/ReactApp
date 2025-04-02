@@ -1,11 +1,14 @@
 
 import { useEffect, useState } from "react";
 import { useParams,useLocation } from "react-router-dom";
-import { getDataQuiz } from "../../services/apiServices";
+import { getDataQuiz,postSubmitQuiz } from "../../services/apiServices";
 
 import _ from 'lodash';
 import './DetailQuiz.scss'
 import Question from "./Question";
+import { Modal } from "bootstrap";
+import ModalResult from "./ModalResult";
+import { useTransition } from "react";
 
 const DetailQuiz = (props) => {
 
@@ -15,7 +18,13 @@ const DetailQuiz = (props) => {
 
     // lay tung cau hoi 
     const [dataQuiz ,setDataquiz]=useState([])
-    const [index ,setIndex]=useState(0)
+    const [index, setIndex] = useState(0)
+    // 
+    const [isShowModalResult, setIsShowModalResult] = useState(false)
+    const[dataModalResult,setDataModalResult] = useState({})
+    
+
+
     console.log("check param",params);
     console.log("check location",location);
     useEffect(() => {
@@ -102,7 +111,7 @@ const DetailQuiz = (props) => {
 
 
     // ham handle fisnish 
-    const handleFinishQuiz = () => {
+    const handleFinishQuiz = async () => {
         console.log((">> check data sau khi submit", dataQuiz))
         let payload = {
             quizId: +quizId,// quizId chinh bang Id lay tren param
@@ -127,40 +136,112 @@ const DetailQuiz = (props) => {
                 })
             })
             payload.answers = answers;
-            console.log("check answer",payload)
+           // console.log("check answer",payload)
+
+            // api submit 
+            let res = await postSubmitQuiz(payload);
+            console.log("check res", res)
+            if (res && res.EC === 0) {
+                setDataModalResult({
+                    countCorrect: res.DT.countCorrect,
+                    countTotal: res.DT.countTotal,
+                    quizData:res.DT.quizData
+                })
+
+                setIsShowModalResult(true)
+                
+            } else {
+                alert('something wrong....')
+            }
             };
            
         }
-//ket qua cua doan nay se co dang 
-//     check answer 
+
+
+    return (
+        <div className="detail-quiz-container">
+            <div className="left-content">
+                <div className="title">Quiz{ quizId}:{location?.state?.quizTitle}</div>
+               <hr/>
+                <div className="q-body"> <img/> </div>
+                <div className="q-content">
+                    <Question
+                        index={index}
+                        handleCheckbox={handleCheckbox}
+                        data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} />
+                </div>
+                <div className="footer">
+
+                    <button className="btn btn-secondary"  onClick={()=>handlePrev()}>
+                        
+                        Prev</button>
+                    <button className="btn btn-primary"  onClick={()=>handleNext()}>
+                        Next</button>
+                      <button className="btn btn-warning"  onClick={()=>handleFinishQuiz()}>
+                        Finish</button>
+                </div>
+
+        </div>
+            <div className="right-content">
+                count down
+
+            </div>
+            <ModalResult
+                show={isShowModalResult}
+                setShow={setIsShowModalResult}
+                dataModalResult={dataModalResult}
+            />
+
+    </div>
+    )
+}
+
+
+export default DetailQuiz
+
+//ket qua cua doan nay se co dang
+//     check answer
 // {quizId: 1, answers: Array(3)}
 // answers
-// : 
+// :
 // Array(3)
 // 0
-// : 
+// :
 // {questionId: 1, userAnswerId: Array(0)}
 // 1
-// : 
+// :
 // {questionId: 2, userAnswerId: Array(0)}
 // 2
-// : 
+// :
 // {questionId: 3, userAnswerId: Array(0)}
 // length
-// : 
+// :
 // 3
 // [[Prototype]]
-// : 
+// :
 // Array(0)
 // quizId
-// : 
+// :
 // 1
 // [[Prototype]]
-// : 
+// :
 // Object
     
-
+// countCorrect	Số câu bạn trả lời đúng
+// countTotal	Tổng số câu hỏi trong quiz
+// quizData	Mảng chứa kết quả của từng câu hỏi
 //     Giả sử dataQuiz hiện tại:
+
+//       questionId: 2,
+//   isCorrect: true,
+//   userAnswers: [202],
+//   systemAnswers: [202]
+// }
+// Trường	Ý nghĩa
+// questionId	ID của câu hỏi này
+// isCorrect	Bạn chọn đúng không (true/false)
+// userAnswers	Các ID đáp án mà người dùng đã chọn
+// systemAnswers	Các ID đáp án đúng theo hệ thống
 
 // js
 // コピーする
@@ -193,44 +274,6 @@ const DetailQuiz = (props) => {
 // Tìm câu hỏi có questionId === 1.
 // Trong answers của câu hỏi đó, tìm câu trả lời có id === 12 và đặt isSelected = true.
 // Gán lại vào danh sách câu hỏi.
-
-
-    return (
-        <div className="detail-quiz-container">
-            <div className="left-content">
-                <div className="title">Quiz{ quizId}:{location?.state?.quizTitle}</div>
-               <hr/>
-                <div className="q-body"> <img/> </div>
-                <div className="q-content">
-                    <Question
-                        index={index}
-                        handleCheckbox={handleCheckbox}
-                        data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} />
-                </div>
-                <div className="footer">
-
-                    <button className="btn btn-secondary"  onClick={()=>handlePrev()}>
-                        
-                        Prev</button>
-                    <button className="btn btn-primary"  onClick={()=>handleNext()}>
-                        Next</button>
-                      <button className="btn btn-warning"  onClick={()=>handleFinishQuiz()}>
-                        Finish</button>
-                </div>
-
-        </div>
-            <div className="right-content">
-                count down
-
-        </div>
-
-    </div>
-    )
-}
-
-
-export default DetailQuiz
-
 
 //Khi quizId thay đổi (hoặc khi component render lần đầu), hàm fetchQuestion() sẽ được gọi.
 // .map((value, key) => {

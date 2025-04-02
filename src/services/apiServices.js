@@ -90,5 +90,10 @@ const getDataQuiz = (id) => {
 
     
 }
+// submit cau tra loi handle submit 
+const postSubmitQuiz = (data) => {
+            return axios.post(`api/v1/quiz-submit`,{...data})
 
-export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate,postLogin,postCreateRegister,getQuizByUser,getDataQuiz }
+}
+
+export{postCreateNewUser,getAllUsers,putUpdateNewUser,deleteUser,getUserWithPaginate,postLogin,postCreateRegister,getQuizByUser,getDataQuiz,postSubmitQuiz }
